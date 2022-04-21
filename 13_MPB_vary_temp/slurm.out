@@ -1,0 +1,6 @@
+rm -rf MonteCarlo *.o
+g++ -O3 -m64  -c  HostFunctions.cpp 
+nvcc  -Xptxas -O3  -c DeviceKernels.cu 
+nvcc  -Xptxas -O3  -c ElectricField.cu 
+nvcc  -Xptxas -O3  -c main.cu 
+nvcc  -Xptxas -O3  -lcufft HostFunctions.o DeviceKernels.o ElectricField.o main.o   -o MonteCarlo
